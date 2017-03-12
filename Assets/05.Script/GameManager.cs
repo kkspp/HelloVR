@@ -55,4 +55,7 @@ public class GameManager : MonoBehaviour {
         }
 
     }
+	void UphillFail(){
+		DecreaseScore (10);
+	}
 }
