@@ -1,45 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Car = UnityStandardAssets.Vehicles.Car;
 
-public class SpeedStart : MonoBehaviour {
-
-    Rigidbody carRb;
-    float speed;
-    //bool check = false;//구간에 차량이있는지 체크
-
-
-
-	void Start () {
-        carRb = GameObject.Find("Car").GetComponent<Rigidbody>();
-	}
-	
-	void Update () {
-	
-	}
-    void OnTriggerEnter(Collider other)
+public class AccelationArea : MonoBehaviour
     {
-        if (other.tag == "Player")
+
+        Rigidbody carRb;
+        float speed;
+        Car::CarController m_CarController;// CarController 내에 있는 멤버 변수들을 받아오기 위해
+                                       
+
+
+
+    void Start()
         {
-            Debug.Log("가속구간 돌입");          
+         this.m_CarController = GameObject.Find("Car").GetComponent<Car::CarController>();
         }
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player")
+
+        void Update()
         {
-            speed = carRb.velocity.magnitude;//속도를 벡터값으로 변환
-            if (speed > 11)//수정예정
-            {   
-                GameManager.instance.checkOverspeed = true;//일정속도이상 됐으니 성공
+
+        }
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Player")
+            {
+                 GameManager.instance.AccelationSection = true;
+                 Debug.Log("가속구간 돌입");
             }
         }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.name == "ColliderFront")
+        void OnTriggerStay(Collider other)
         {
-            Debug.Log("가속구간이 지남.");
+            if (other.tag == "Player")
+            {
+            //speed = carRb.velocity.magnitude;//속도를 벡터값으로 변환
+            Debug.Log(m_CarController.CurrentSpeed);
+                if (m_CarController.CurrentSpeed > 30)//수정예정
+                {
+                
+                    GameManager.instance.checkAccelation = true;//일정속도이상 됐으니 성공
+                }
+            }
         }
+        void OnTriggerExit(Collider other)
+        {
+            if (other.name == "ColliderFront")
+            {
+                Debug.Log("가속구간이 지남.");
+                GameManager.instance.AccelationSection = false;
+            }
+        }
+
     }
 
-}
