@@ -83,6 +83,7 @@
     <Compile Include="Assets\05.Script\ParkingTrunRight.cs" />
     <Compile Include="Assets\05.Script\Score.cs" />
     <Compile Include="Assets\05.Script\SideColliderCheck.cs" />
+    <Compile Include="Assets\05.Script\Siren.cs" />
     <Compile Include="Assets\05.Script\UphillCheckArea.cs" />
   </ItemGroup>
   <ItemGroup>
