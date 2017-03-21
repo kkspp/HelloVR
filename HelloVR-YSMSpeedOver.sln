@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloVR-YSMSpeedOver.Plugins", "HelloVR-YSMSpeedOver.Plugins.csproj", "{B099A3B3-54AF-9517-1665-9D0486EFD5FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloVR-YSMSpeedOver", "HelloVR-YSMSpeedOver.csproj", "{EB2E4A31-E385-DFA6-FB64-981C7B7464BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloVR-YSMSpeedOver.Editor", "HelloVR-YSMSpeedOver.Editor.csproj", "{75450C7E-4698-99D7-DE69-E2B84AE1D08E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B099A3B3-54AF-9517-1665-9D0486EFD5FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B099A3B3-54AF-9517-1665-9D0486EFD5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B099A3B3-54AF-9517-1665-9D0486EFD5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B099A3B3-54AF-9517-1665-9D0486EFD5FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2E4A31-E385-DFA6-FB64-981C7B7464BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2E4A31-E385-DFA6-FB64-981C7B7464BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2E4A31-E385-DFA6-FB64-981C7B7464BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2E4A31-E385-DFA6-FB64-981C7B7464BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75450C7E-4698-99D7-DE69-E2B84AE1D08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75450C7E-4698-99D7-DE69-E2B84AE1D08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75450C7E-4698-99D7-DE69-E2B84AE1D08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75450C7E-4698-99D7-DE69-E2B84AE1D08E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
