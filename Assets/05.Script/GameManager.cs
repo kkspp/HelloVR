@@ -79,9 +79,18 @@ public class GameManager : MonoBehaviour
     {
         DecreaseScore(10);
     }
-    void PakringSucces()
+
+    void ParkingSuccess()
     {
-        Debug.Log("주차성공 입니다");
+        if (ParkingManager.instance.checking == true)
+        {
+            Debug.Log("주차성공 입니다");
+        }
+        else
+        {
+            Debug.Log("주차구간 실격입니다");
+        }
+		GameObject.Find("ParkingManager").SendMessage("ParkingReset");//변수초기화
     }
 
     void CheckVelocity()

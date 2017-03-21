@@ -15,15 +15,16 @@ public class ParkingStart : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log("직진 하세요.");
-            ParkingManager.instance.ParkingSection = true;
-        }
-        if(ParkingManager.instance.checking == true)//전부다 성공하고 다시 Collider에 부딛혔을때.
+        if (other.tag == "Player" && ParkingManager.instance.ParkingSection == true)//다시나왔을때.
         {
             GameManager.instance.ParkingCheck = true;
             GameObject.Find("ParkingManager").SendMessage("sendGameManager");
         }
+        if (other.tag == "Player"&& ParkingManager.instance.ParkingSection == false)
+        {
+            Debug.Log("직진 하세요.");
+            ParkingManager.instance.ParkingSection = true;
+        }
+        
     }
 }

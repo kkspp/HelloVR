@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C9746347-84D3-F12D-0FC8-03B54C1032B8}</ProjectGuid>
+    <ProjectGuid>{81AD05F4-F32D-2814-222E-BCDFC84B952E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -130,7 +130,7 @@
  <HintPath>E:/Utility/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>E:/Workspace/workspaceUnity/archive2/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>E:/Workspace/workspaceUnity/DrivingSimulator_ver0321/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

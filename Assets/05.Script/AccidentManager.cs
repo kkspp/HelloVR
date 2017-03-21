@@ -40,23 +40,12 @@ public class AccidentManager : MonoBehaviour {
         	    {
     	        	Debug.Log("성공입니다. 비상등을 끄고 출발하세요");
 	                GameManager.instance.accidentCheck = true;
+					siren.enabled = false;//사이렌스크립트켜서 빤짝빤짝
+					sound.enabled = false;//삐용삐용소리
+					GameObject.Find("GameManager").SendMessage("AccidentChecking");
 				}
         	}
         }
     }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            siren.enabled = false;//사이렌스크립트켜서 빤짝빤짝
-            sound.enabled = false;//삐용삐용소리
-            GameObject.Find("GameManager").SendMessage("AccidentChecking");
-        }
-    }
-
-    // Use this for initialization
-
-
-    // Update is called once per frame
-
+   
 }

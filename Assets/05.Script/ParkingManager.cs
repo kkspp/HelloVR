@@ -26,6 +26,13 @@ public class ParkingManager : MonoBehaviour {
 
     void sendGameManager()
     {
-        GameObject.Find("GameManager").SendMessage("PakringSucces");
+        GameObject.Find("GameManager").SendMessage("ParkingSuccess");
+    }
+    void ParkingReset()
+    {
+       ParkingSection = false;//구간진입
+       BackwardCheck = false;//후진해야할곳 진입
+       TrunRightCheck = false;//우회전으로 나가야할곳 진입.주차완료확인
+       checking = false; //전체적인 성공인지아닌지체크.
     }
 }

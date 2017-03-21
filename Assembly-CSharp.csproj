@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{037889D9-E24E-FB38-2BB1-5C1FDD46C116}</ProjectGuid>
+    <ProjectGuid>{ADDED20C-CC67-4EE4-ACE2-9B4779E15F9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -55,7 +55,7 @@
      <Compile Include="Assets\05.Script\ParkingBacrward.cs" />
      <Compile Include="Assets\05.Script\ParkingManager.cs" />
      <Compile Include="Assets\05.Script\ParkingStart.cs" />
-     <Compile Include="Assets\05.Script\ParkingTrunRight.cs" />
+     <Compile Include="Assets\05.Script\ParkingTurnRight.cs" />
      <Compile Include="Assets\05.Script\Score.cs" />
      <Compile Include="Assets\05.Script\SideColliderCheck.cs" />
      <Compile Include="Assets\05.Script\Siren.cs" />
@@ -161,12 +161,12 @@
  <HintPath>E:/Utility/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>E:/Workspace/workspaceUnity/archive2/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>E:/Workspace/workspaceUnity/DrivingSimulator_ver0321/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C9746347-84D3-F12D-0FC8-03B54C1032B8}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{81AD05F4-F32D-2814-222E-BCDFC84B952E}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

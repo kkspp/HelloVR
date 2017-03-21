@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{92D253C7-1CB7-9CA7-BC5A-35A8C471E496}</ProjectGuid>
+    <ProjectGuid>{BBCB8C09-7A5D-85F9-DB1E-97CF7042FDA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -109,7 +109,7 @@
  <HintPath>E:/Utility/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>E:/Workspace/workspaceUnity/archive2/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>E:/Workspace/workspaceUnity/DrivingSimulator_ver0321/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Utility/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -120,9 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C9746347-84D3-F12D-0FC8-03B54C1032B8}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{81AD05F4-F32D-2814-222E-BCDFC84B952E}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{037889D9-E24E-FB38-2BB1-5C1FDD46C116}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{ADDED20C-CC67-4EE4-ACE2-9B4779E15F9B}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
