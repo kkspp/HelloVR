@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: fc0b1b0a9ff2000408abecd79b0aeada
+timeCreated: 1491636710
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: backseats
+    100002: clocks
+    100004: compartment
+    100006: dash2
+    100008: dashboard
+    100010: driverseat
+    100012: idrivecontrol
+    100014: lcd
+    100016: ontunnelpanel
+    100018: passengerseat
+    100020: Plane001
+    100022: Plane002
+    100024: steringwheel
+    100026: ventilation1
+    100028: ventilation3
+    100030: //RootNode
+    100032: "\uAC70\uC6B81"
+    100034: "\uAC70\uC6B82"
+    100036: "\uB3C4\uB85C\uC8FC\uD589"
+    100038: "\uB3C4\uB85C\uC8FC\uD589\uB178"
+    100040: "\uB3C4\uB85C\uC8FC\uD589\uB4A4"
+    100042: "\uB3C4\uB85C\uC8FC\uD589\uBE68"
+    100044: "\uB3C4\uB85C\uC8FC\uD589\uCD08"
+    100046: "\uB3C4\uB85C\uC8FC\uD589\uD770"
+    100048: "\uBC14\uD034"
+    100050: "\uBC14\uD0342"
+    100052: "\uBC31\uBC00\uB7EC"
+    100054: "\uBC31\uBC00\uB7EC \uAC70\uC6B8"
+    100056: "\uBC88\uD638\uD310"
+    100058: "\uBC88\uD638\uD3102"
+    100060: "\uBCF8\uCCB4"
+    100062: "\uC720\uB9AC\uCC3D"
+    100064: "\uC804\uBBF8\uB4F1001"
+    100066: "\uD6C4\uBBF8\uB4F1001"
+    400000: backseats
+    400002: clocks
+    400004: compartment
+    400006: dash2
+    400008: dashboard
+    400010: driverseat
+    400012: idrivecontrol
+    400014: lcd
+    400016: ontunnelpanel
+    400018: passengerseat
+    400020: Plane001
+    400022: Plane002
+    400024: steringwheel
+    400026: ventilation1
+    400028: ventilation3
+    400030: //RootNode
+    400032: "\uAC70\uC6B81"
+    400034: "\uAC70\uC6B82"
+    400036: "\uB3C4\uB85C\uC8FC\uD589"
+    400038: "\uB3C4\uB85C\uC8FC\uD589\uB178"
+    400040: "\uB3C4\uB85C\uC8FC\uD589\uB4A4"
+    400042: "\uB3C4\uB85C\uC8FC\uD589\uBE68"
+    400044: "\uB3C4\uB85C\uC8FC\uD589\uCD08"
+    400046: "\uB3C4\uB85C\uC8FC\uD589\uD770"
+    400048: "\uBC14\uD034"
+    400050: "\uBC14\uD0342"
+    400052: "\uBC31\uBC00\uB7EC"
+    400054: "\uBC31\uBC00\uB7EC \uAC70\uC6B8"
+    400056: "\uBC88\uD638\uD310"
+    400058: "\uBC88\uD638\uD3102"
+    400060: "\uBCF8\uCCB4"
+    400062: "\uC720\uB9AC\uCC3D"
+    400064: "\uC804\uBBF8\uB4F1001"
+    400066: "\uD6C4\uBBF8\uB4F1001"
+    2300000: backseats
+    2300002: clocks
+    2300004: compartment
+    2300006: dash2
+    2300008: dashboard
+    2300010: driverseat
+    2300012: idrivecontrol
+    2300014: lcd
+    2300016: ontunnelpanel
+    2300018: passengerseat
+    2300020: Plane001
+    2300022: Plane002
+    2300024: steringwheel
+    2300026: ventilation1
+    2300028: ventilation3
+    2300030: "\uAC70\uC6B81"
+    2300032: "\uAC70\uC6B82"
+    2300034: "\uB3C4\uB85C\uC8FC\uD589"
+    2300036: "\uB3C4\uB85C\uC8FC\uD589\uB178"
+    2300038: "\uB3C4\uB85C\uC8FC\uD589\uB4A4"
+    2300040: "\uB3C4\uB85C\uC8FC\uD589\uBE68"
+    2300042: "\uB3C4\uB85C\uC8FC\uD589\uCD08"
+    2300044: "\uB3C4\uB85C\uC8FC\uD589\uD770"
+    2300046: "\uBC14\uD034"
+    2300048: "\uBC14\uD0342"
+    2300050: "\uBC31\uBC00\uB7EC"
+    2300052: "\uBC31\uBC00\uB7EC \uAC70\uC6B8"
+    2300054: "\uBC88\uD638\uD310"
+    2300056: "\uBC88\uD638\uD3102"
+    2300058: "\uBCF8\uCCB4"
+    2300060: "\uC720\uB9AC\uCC3D"
+    2300062: "\uC804\uBBF8\uB4F1001"
+    2300064: "\uD6C4\uBBF8\uB4F1001"
+    3300000: backseats
+    3300002: clocks
+    3300004: compartment
+    3300006: dash2
+    3300008: dashboard
+    3300010: driverseat
+    3300012: idrivecontrol
+    3300014: lcd
+    3300016: ontunnelpanel
+    3300018: passengerseat
+    3300020: Plane001
+    3300022: Plane002
+    3300024: steringwheel
+    3300026: ventilation1
+    3300028: ventilation3
+    3300030: "\uAC70\uC6B81"
+    3300032: "\uAC70\uC6B82"
+    3300034: "\uB3C4\uB85C\uC8FC\uD589"
+    3300036: "\uB3C4\uB85C\uC8FC\uD589\uB178"
+    3300038: "\uB3C4\uB85C\uC8FC\uD589\uB4A4"
+    3300040: "\uB3C4\uB85C\uC8FC\uD589\uBE68"
+    3300042: "\uB3C4\uB85C\uC8FC\uD589\uCD08"
+    3300044: "\uB3C4\uB85C\uC8FC\uD589\uD770"
+    3300046: "\uBC14\uD034"
+    3300048: "\uBC14\uD0342"
+    3300050: "\uBC31\uBC00\uB7EC"
+    3300052: "\uBC31\uBC00\uB7EC \uAC70\uC6B8"
+    3300054: "\uBC88\uD638\uD310"
+    3300056: "\uBC88\uD638\uD3102"
+    3300058: "\uBCF8\uCCB4"
+    3300060: "\uC720\uB9AC\uCC3D"
+    3300062: "\uC804\uBBF8\uB4F1001"
+    3300064: "\uD6C4\uBBF8\uB4F1001"
+    4300000: "\uBC14\uD034"
+    4300002: "\uBC14\uD0342"
+    4300004: "\uC720\uB9AC\uCC3D"
+    4300006: "\uD6C4\uBBF8\uB4F1001"
+    4300008: "\uC804\uBBF8\uB4F1001"
+    4300010: "\uB3C4\uB85C\uC8FC\uD589\uD770"
+    4300012: "\uB3C4\uB85C\uC8FC\uD589\uBE68"
+    4300014: "\uB3C4\uB85C\uC8FC\uD589\uB178"
+    4300016: "\uB3C4\uB85C\uC8FC\uD589\uCD08"
+    4300018: "\uB3C4\uB85C\uC8FC\uD589"
+    4300020: "\uB3C4\uB85C\uC8FC\uD589\uB4A4"
+    4300022: "\uBC88\uD638\uD310"
+    4300024: "\uBC88\uD638\uD3102"
+    4300026: backseats
+    4300028: ontunnelpanel
+    4300030: idrivecontrol
+    4300032: dashboard
+    4300034: ventilation3
+    4300036: ventilation1
+    4300038: clocks
+    4300040: lcd
+    4300042: dash2
+    4300044: compartment
+    4300046: steringwheel
+    4300048: driverseat
+    4300050: passengerseat
+    4300052: "\uBCF8\uCCB4"
+    4300054: "\uAC70\uC6B81"
+    4300056: "\uAC70\uC6B82"
+    4300058: Plane001
+    4300060: Plane002
+    4300062: "\uBC31\uBC00\uB7EC"
+    4300064: "\uBC31\uBC00\uB7EC \uAC70\uC6B8"
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
