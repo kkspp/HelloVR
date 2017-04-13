@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public int currentStage;
     public int pastStage;
 
+    public GameObject varForCarBrake;
+
     void Awake()
     {		
         instance = this;//자기자신을 주입.
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
         Turnleftsound = (AudioClip)Resources.Load("Turnleft");
         Turnrightsound = (AudioClip)Resources.Load("Turnright");
         parkingAnnounce1 = (AudioClip)Resources.Load("ParkingAnnounce");
-        parkingAnnounce2 = (AudioClip)Resources.Load("ParkingAnnounce2"); ;
+        parkingAnnounce2 = (AudioClip)Resources.Load("ParkingAnnounce2");
         this.m_CarController = car.GetComponent<Car::CarController>();
 		this.m_StopSirenButton = GameObject.Find("SirenStopButton").GetComponent<EmergencyLight::StopSirenButton>();
     }
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
 		score = 100;
         GameObject.Find("ScoreBoard").SendMessage("RenewScore", score);//스코어 화면에 100점 나오게
         isPlayerPassedUphill = false;
-        passAccelationStage = false;//가속이성공했는지.
+        passAccelationStage = false;//가속이 성공했는지.
 		accelationSection = false;//가속구간인지
 		parkingCheck = false;
 		overSpeedCheck = false;//과속체크
@@ -87,6 +89,9 @@ public class GameManager : MonoBehaviour
         {
             CheckOverSpeeding();
         }
+
+        //GameMenus에 현재 uphill에 있는지 보내기
+        varForCarBrake.SendMessage("SetStageUphill", isPlayerPassedUphill);
 
         /*
 	    // 만약 점수가 0점 이하로 떨어지면 
@@ -204,7 +209,6 @@ public class GameManager : MonoBehaviour
         }
 
 		GameObject.Find("ParkingManager").SendMessage("ParkingReset");//변수초기화
-
 		
     }
 

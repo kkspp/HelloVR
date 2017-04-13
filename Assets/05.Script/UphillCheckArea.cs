@@ -11,6 +11,7 @@ namespace UnityStandardAssets.Vehicles.Car{					// CarContoller 스크립트에 
 		private const float UPHILL_MAX_SPEED_LIMIT = 20.0f;
 		private const float UPHILL_MIN_SPEED_LIMIT = 0.1f; 	// 속력은 0에 수렴 할 뿐 완벽한 0이 될 수 없으므로 float형으로 민감도를 결정합니다. [권장: 0.0~0.1]
 		private const int WARN_MAX_SPEED = 0;               // Warn() 함수에서 파라미터에 들어갈 상수입니다. [0: 과속, ...]
+        private bool isPass = false;
 		float Times = 3f;
 		CarController m_CarController;						// CarController 내에 있는 멤버 변수들을 받아오기 위해
 		GameObject m_Car;									// 실제 운전하는 Car 오브젝트						
@@ -49,48 +50,47 @@ namespace UnityStandardAssets.Vehicles.Car{					// CarContoller 스크립트에 
 		void OnTriggerStay(Collider other)					// 경사로 위에 올라가면 ? (수민이 형꺼랑 통일 (collider.bounds.contains 사용 안하기로))
 		{
 			// 포함한 오브젝트의 태그가 Player(자동차)이고 경사로를 합격못했으면!
-			if (other.tag == "Player" && !GameManager.instance.isPlayerPassedUphill) {
+			if (other.tag == "Player" && isPass == false)
+            {
 				if (this.m_CarController.CurrentSpeed < UPHILL_MIN_SPEED_LIMIT)
 				{
 					Times -= Time.deltaTime;
-					timeLeftText.text = "남은 시간: " + Times.ToString("N1"); // 남 은 시 간 텍 스 트 로 표 시 
-
-
-
-					Debug.Log(Times);
+					timeLeftText.text = "남은 시간: " + Times.ToString("N1"); // 남은시간 텍스트로 표시 
+                    
+					//Debug.Log(Times);
 					if (Times <= 0) //3초를 멈췄으면!
 					{
 						print("경사로 구간 정차 완료");
-						GameManager.instance.isPlayerPassedUphill = true;                  // 경사로테스트 합격
 						timeLeft.SetActive (false); // 남 은 시 간 숨 기 기 
-
-					}
+                        isPass = true;
+                    }
 				}
 			}
 		}
 
 		void OnTriggerExit(Collider other)
 		{
-			if (other.tag == "Player" && GameManager.instance.isPlayerPassedUphill == false)
+			if (other.tag == "Player" && isPass == false)
 			{
 				print(carPositionInit.isPlayerDoingWholeStage);
 				GameManager.instance.SuccessSound = false;
 				GameMenus.resultText = "경사로구간 실격입니다!";
 				GameMenus.isPlayerSelectingMenus = true;
 				SceneManager.LoadScene("MenusWhenPlayerFails");//실격처리
-
 			}
 
-			if (!carPositionInit.isPlayerDoingWholeStage && other.tag == "Player" && GameManager.instance.isPlayerPassedUphill == true)
+			if (!carPositionInit.isPlayerDoingWholeStage && other.tag == "Player" && isPass == true)
 			{
-				GameManager.instance.SuccessSound = true;
+                GameManager.instance.isPlayerPassedUphill = true;                  // 경사로테스트 합격
+                GameManager.instance.SuccessSound = true;
 				GameMenus.resultText = "합격입니다.경사로구간 연습이 종료되었습니다!";
 				GameMenus.isPlayerSelectingMenus = true;
 				SceneManager.LoadScene("MenusWhenPlayerFails");
 			}
-			if (other.tag == "Player" && GameManager.instance.isPlayerPassedUphill == true)
+			if (other.tag == "Player" && isPass == true)
 			{
-				GameManager.instance.SendMessage("playSound");
+                GameManager.instance.isPlayerPassedUphill = true;                  // 경사로테스트 합격
+                GameManager.instance.SendMessage("playSound");
 			}
 		}
 

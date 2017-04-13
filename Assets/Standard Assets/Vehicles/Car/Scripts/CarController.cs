@@ -69,7 +69,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
-			print ("현재 속력 타입: " + m_SpeedType);
+			//print ("현재 속력 타입: " + m_SpeedType);
         }
 
 
@@ -126,9 +126,28 @@ namespace UnityStandardAssets.Vehicles.Car
             Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
         }
 
-
+        
         public void Move(float steering, float accel, float footbrake, float handbrake)
         {
+            //추가
+            accel = accel - footbrake;
+            //Debug.Log(steering);
+            
+            if( footbrake >0 && CurrentSpeed < 0.1)
+            {
+                accel = 0;
+                footbrake = 0;
+            }
+            
+			//경사로 코스일 때 오르막때문에 뒤로밀리는 현상 처리하기위해
+            if(m_Rigidbody.velocity.x > 0 && footbrake >0 && !GameMenus.uphill)
+            {
+                accel = footbrake;
+            }
+
+            //추가 끝
+
+
             for (int i = 0; i < 4; i++)
             {
                 Quaternion quat;
@@ -140,7 +159,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
             //clamp input values
             steering = Mathf.Clamp(steering, -1, 1);
-            AccelInput = accel = Mathf.Clamp(accel, 0, 1);
+            //AccelInput = accel = Mathf.Clamp(accel, 0, 1);
             BrakeInput = footbrake = -1*Mathf.Clamp(footbrake, -1, 0);
             handbrake = Mathf.Clamp(handbrake, 0, 1);
 

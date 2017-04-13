@@ -18,10 +18,13 @@ public class StopSirenButton : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hand") {
-            Debug.Log("비상등 켜기");
-			emergencyLightOn = true;
-        }
+			if (other.tag == "Hand" && emergencyLightOn == false) {
+				Debug.Log ("비상등 켜기");
+				emergencyLightOn = true;
+			} else if (other.tag == "Hand" && emergencyLightOn == true) {
+				Debug.Log ("비상등 끄기");
+				emergencyLightOn = false;
+			}
     }
 }
 }

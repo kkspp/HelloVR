@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F53D966E-94BF-73A5-9A9D-43CCF38394EB}</ProjectGuid>
+    <ProjectGuid>{8591D745-A845-DE4E-48E1-1B0B92CAC897}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -140,10 +140,10 @@
  <HintPath>E:/Utility/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Google.ProtocolBuffers">
- <HintPath>E:/Workspace/workspaceUnity/DrivingSimulator_ver0407.1/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
+ <HintPath>E:/Workspace/workspaceUnity/DS_ver0411_2/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>E:/Workspace/workspaceUnity/DrivingSimulator_ver0407.1/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>E:/Workspace/workspaceUnity/DS_ver0411_2/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

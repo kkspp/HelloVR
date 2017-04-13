@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C6E2A87B-32A1-C549-8D87-6B3110E07E71}</ProjectGuid>
+    <ProjectGuid>{66AA46CE-58E7-F766-B80B-D222902545C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -122,10 +122,10 @@
  <HintPath>E:/Utility/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="Google.ProtocolBuffers">
- <HintPath>E:/Workspace/workspaceUnity/DrivingSimulator_ver0407.1/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
+ <HintPath>E:/Workspace/workspaceUnity/DS_ver0411_2/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>E:/Workspace/workspaceUnity/DrivingSimulator_ver0407.1/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>E:/Workspace/workspaceUnity/DS_ver0411_2/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Utility/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -136,9 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{F53D966E-94BF-73A5-9A9D-43CCF38394EB}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{8591D745-A845-DE4E-48E1-1B0B92CAC897}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{F1B1525D-E002-C1A7-C8CC-DFE159720E25}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{D9666E7F-246C-E53F-7EE6-2B3ABBD8243E}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

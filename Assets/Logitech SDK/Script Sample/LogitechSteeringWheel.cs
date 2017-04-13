@@ -10,8 +10,14 @@ public class LogitechSteeringWheel : MonoBehaviour {
     private string forcesLabel;
     string[] activeForceAndEffect;
 
-	// Use this for initialization
-	void Start () {
+
+
+    //추가. 차의 핸들 값을 CarUserControl에 보내기 위해
+    public static LogitechSteeringWheel instance;//싱글톤방식 전역변수.
+    public GameObject logitech;
+
+    // Use this for initialization
+    void Start () {
         activeForces = "";
         propertiesEdit = "";
         actualState = "";
@@ -36,21 +42,22 @@ public class LogitechSteeringWheel : MonoBehaviour {
 
 	}
 
-    /*
+    
     void OnGUI()
     {
-        activeForces = GUI.TextArea(new Rect(10, 10, 180, 200), activeForces, 400);
-        propertiesEdit = GUI.TextArea(new Rect(200, 10, 200, 200), propertiesEdit, 400);
-        actualState = GUI.TextArea(new Rect(410, 10, 300, 200), actualState, 1000);
-        buttonStatus = GUI.TextArea(new Rect(720, 10, 300, 200), buttonStatus, 1000);
+        //activeForces = GUI.TextArea(new Rect(10, 10, 180, 200), activeForces, 400);
+        //propertiesEdit = GUI.TextArea(new Rect(200, 10, 200, 200), propertiesEdit, 400);
+        //actualState = GUI.TextArea(new Rect(410, 10, 300, 200), actualState, 1000);
+        //buttonStatus = GUI.TextArea(new Rect(720, 10, 300, 200), buttonStatus, 1000);
         GUI.Label(new Rect(10, 400, 800, 400), forcesLabel);
     }
-    */
+    
 
 	// Update is called once per frame
 	void Update () {
-		//All the test functions are called on the first device plugged in(index = 0)
-		if(LogitechGSDK.LogiUpdate() && LogitechGSDK.LogiIsConnected(0)){
+        
+        //All the test functions are called on the first device plugged in(index = 0)
+        if (LogitechGSDK.LogiUpdate() && LogitechGSDK.LogiIsConnected(0)){
 
             //CONTROLLER PROPERTIES
             StringBuilder deviceName = new StringBuilder(256);
@@ -81,6 +88,10 @@ public class LogitechSteeringWheel : MonoBehaviour {
             actualState += "z-axis rotation :" + rec.lRz + "\n"; //브레이크
             actualState += "extra axes positions 1 :" + rec.rglSlider[0] + "\n";
             actualState += "extra axes positions 2 :" + rec.rglSlider[1] + "\n";
+
+            //핸들 각도 Usercontrol에전송
+            logitech.SendMessage("getWheelAngle", rec.lX);
+
             switch (rec.rgdwPOV[0])
             {
                 case (0): actualState += "POV : UP\n"; break;
