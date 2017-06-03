@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D9666E7F-246C-E53F-7EE6-2B3ABBD8243E}</ProjectGuid>
+    <ProjectGuid>{2A32A78B-85BB-F840-56E6-0706225D2891}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,26 +38,29 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>E:/Utility/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>E:/Utility/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\05.Script\AccelationArea.cs" />
      <Compile Include="Assets\05.Script\AccelationEnd.cs" />
      <Compile Include="Assets\05.Script\AccidentManager.cs" />
+     <Compile Include="Assets\05.Script\CarCollideCheck.cs" />
+     <Compile Include="Assets\05.Script\CarCrashSound.cs" />
      <Compile Include="Assets\05.Script\CarPositionEnum.cs" />
      <Compile Include="Assets\05.Script\CarPositionInit.cs" />
-     <Compile Include="Assets\05.Script\CarPositionManager.cs" />
      <Compile Include="Assets\05.Script\CarPositionVectors.cs" />
      <Compile Include="Assets\05.Script\ChangeSignal.cs" />
      <Compile Include="Assets\05.Script\CheckWaitForSignalEnd.cs" />
      <Compile Include="Assets\05.Script\CheckWaitforSignal.cs" />
+     <Compile Include="Assets\05.Script\DontdestoryObject.cs" />
      <Compile Include="Assets\05.Script\ExitStageController.cs" />
      <Compile Include="Assets\05.Script\GameManager.cs" />
      <Compile Include="Assets\05.Script\GearController.cs" />
+     <Compile Include="Assets\05.Script\Lepmotionposition.cs" />
      <Compile Include="Assets\05.Script\Menus\ResultText.cs" />
      <Compile Include="Assets\05.Script\ParkingBackward.cs" />
      <Compile Include="Assets\05.Script\ParkingManager.cs" />
@@ -71,8 +74,11 @@
      <Compile Include="Assets\05.Script\StopSirenButton.cs" />
      <Compile Include="Assets\05.Script\TurnLeftSound.cs" />
      <Compile Include="Assets\05.Script\TurnrightSound.cs" />
+     <Compile Include="Assets\05.Script\UISpinner.cs" />
      <Compile Include="Assets\05.Script\UphillCheckArea.cs" />
      <Compile Include="Assets\05.Script\UphillFailCheck.cs" />
+     <Compile Include="Assets\05.Script\Userdata.cs" />
+     <Compile Include="Assets\05.Script\UserdataObject.cs" />
      <Compile Include="Assets\05.Script\VehicleSpeedView.cs" />
      <Compile Include="Assets\05.Script\YellowLineContact.cs" />
      <Compile Include="Assets\LeapMotion\Scripts\Algorithms\SlidingMax.cs" />
@@ -183,7 +189,12 @@
      <Compile Include="Assets\OVR\Scripts\Util\OVRSceneSampleController.cs" />
      <Compile Include="Assets\OVR\Scripts\Util\OVRScreenFade.cs" />
      <Compile Include="Assets\OVR\Scripts\Util\OVRWaitCursor.cs" />
+     <Compile Include="Assets\SampleScenes2\Scripts\CameraSwitch.cs" />
+     <Compile Include="Assets\SampleScenes2\Scripts\LevelReset.cs" />
+     <Compile Include="Assets\SampleScenes2\Scripts\PlaceTargetWithMouse.cs" />
+     <Compile Include="Assets\SampleScenes2\Scripts\SlowMoButton.cs" />
      <Compile Include="Assets\SubmitStudentNumber.cs" />
+     <None Include="Assets\Plugins\Android\Firebase\AndroidManifest.xml" />
      <None Include="Assets\Plugins\donotdelete.txt" />
      <None Include="Assets\02.Material\Skyboxes\readme.txt" />
      <None Include="Assets\LeapMotion\Resources\LeapCG.cginc" />
@@ -195,6 +206,7 @@
      <None Include="Assets\LeapMotion\Resources\RuntimeGizmos.shader" />
      <None Include="Assets\Standard Assets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
      <None Include="Assets\Standard Assets\Vehicles\Car\Shaders\ReflectiveDiffuseSpecTransp.shader" />
      <None Include="Assets\LeapMotion\Dependencies.txt" />
      <None Include="Assets\OVR\Shaders\Unlit Crosshair.shader" />
@@ -208,6 +220,8 @@
      <None Include="Assets\LeapMotion\Resources\PassthroughBackground.shader" />
      <None Include="Assets\OVR\Resources\Underlay Transparent Occluder.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+     <None Include="Assets\Firebase\Plugins\link.xml" />
+     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver.txt" />
      <None Include="Assets\Plugins\Android\AndroidManifest-Daydream.xml" />
      <None Include="Assets\Standard Assets\Vehicles\Car\CarGuidelines.txt" />
      <None Include="Assets\LeapMotion\Version.txt" />
@@ -216,22 +230,47 @@
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\Plugins\Android\AndroidManifest-Cardboard.xml" />
      <None Include="Assets\OVR\Resources\Underlay Impostor.shader" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
  <Reference Include="UnityEngine.UI">
- <HintPath>E:/Utility/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>E:/Utility/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.App">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Firebase.App.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Auth">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Database">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Database.Unity">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Firebase.Database.Unity.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.MiniJson">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.Sharpen">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Google.Sharpen.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Compat">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Unity.Compat.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Tasks">
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Firebase/Plugins/Unity.Tasks.dll</HintPath>
  </Reference>
  <Reference Include="Google.ProtocolBuffers">
- <HintPath>E:/Workspace/workspaceUnity/DS_ver0411_2/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>E:/Workspace/workspaceUnity/DS_ver0411_2/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>E:/HelloVR/DS_ver0601/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{8591D745-A845-DE4E-48E1-1B0B92CAC897}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{1010BA20-DB24-F15B-4807-64EB0FEAD6C1}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

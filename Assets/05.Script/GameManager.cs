@@ -3,8 +3,12 @@ using System.Collections;
 using Car = UnityStandardAssets.Vehicles.Car;
 using UnityEngine.SceneManagement;
 using EmergencyLight = Emergency;
+using System;
+using UnityEngine.UI;
+
 public class GameManager : MonoBehaviour
 {
+    Text message;
     AudioClip sound;//띵동소리
     AudioClip Failsound;//삐익소리
     AudioClip Turnrightsound;//우회전입니다
@@ -18,7 +22,9 @@ public class GameManager : MonoBehaviour
     private const float MAX_SPEED_LIMIT = 20.0f;
 	Car::CarController m_CarController;// CarController 내에 있는 멤버 변수들을 받아오기 위해
 
-	public bool isRedLight;
+    public Boolean emeremergencyLightCheck;//비상등을 켰었는지 안켯엇는지 체크
+
+    public bool isRedLight;
 	public bool isGreenLight;
 	public int score;
     public GameObject car;
@@ -36,9 +42,10 @@ public class GameManager : MonoBehaviour
     //Stage number 구성 - 출발:0 경사로:1 교차로:2 직각주차:3 교차로:4 돌발:5 가속:6
     public int currentStage;
     public int pastStage;
+    
+    public Userdata userdata;
 
-    public GameObject varForCarBrake;
-
+    public GameObject scoreBoard;
     void Awake()
     {		
         instance = this;//자기자신을 주입.
@@ -47,7 +54,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        userdata = new Userdata();
+        userdata.setStart();
         source = GetComponent<AudioSource>();
         sound = (AudioClip)Resources.Load("Bing");
         Failsound = (AudioClip)Resources.Load("FailSound");
@@ -60,10 +68,11 @@ public class GameManager : MonoBehaviour
     }
 
 	void Init(){
-		isRedLight = false;
+        message = car.GetComponentInChildren<Text>();
+        isRedLight = false;
 		isGreenLight = false;
 		score = 100;
-        GameObject.Find("ScoreBoard").SendMessage("RenewScore", score);//스코어 화면에 100점 나오게
+        scoreBoard.SendMessage("RenewScore", score);//스코어 화면에 100점 나오게
         isPlayerPassedUphill = false;
         passAccelationStage = false;//가속이 성공했는지.
 		accelationSection = false;//가속구간인지
@@ -74,24 +83,28 @@ public class GameManager : MonoBehaviour
         choiceFullCourseStage = false;
         currentStage = 0; //현재 있는 stage 
         pastStage = 0; //전에 있었던 stage
+        emeremergencyLightCheck = false;
     }
 
 	// 사용자가 올바른 순서대로 응시하지 않을때 
 	void WrongPath(){
 		GameMenus.isPlayerSelectingMenus = true;
 		GameMenus.resultText = "코스를 순서대로 진행해 주세요";
-		SceneManager.LoadScene ("MenusWhenPlayerFails");
+        userdata.setEnd();
+        UserdataObject.instance.userdata = GameManager.instance.userdata;
+        SceneManager.LoadScene ("MenusWhenPlayerFails");
 	}
 
     void Update()
     {
         if (accelationSection == false || overSpeedCheck == false)//가속구간이 아니고 과속중이아닐때
         {
-            CheckOverSpeeding();
+            if (this.m_CarController != null)
+            {
+                CheckOverSpeeding();
+            }
         }
-
-        //GameMenus에 현재 uphill에 있는지 보내기
-        varForCarBrake.SendMessage("SetStageUphill", isPlayerPassedUphill);
+        
 
         /*
 	    // 만약 점수가 0점 이하로 떨어지면 
@@ -123,11 +136,16 @@ public class GameManager : MonoBehaviour
 
     void PassCar()  //교차로에서 차가 지나갔을 때 미션 완료 확인
     {
+        userdata.signal.setSuccess("Success");
         if (isRedLight == true)  //빨간불인데 지나갔으면 실격
         {
+            userdata.setDisqualification("신호위반");
+            userdata.signal.setSuccess("Fail");
             GameMenus.isPlayerSelectingMenus = true;
             SuccessSound = false;
             GameMenus.resultText = "신호위반 실격입니다.";
+            userdata.setEnd();
+            UserdataObject.instance.userdata = GameManager.instance.userdata;
             SceneManager.LoadScene("MenusWhenPlayerFails");
         }
     }
@@ -138,8 +156,10 @@ public class GameManager : MonoBehaviour
             GameMenus.resultText = "합격입니다.교차로구간 연습이 종료되었습니다.";
             GameMenus.isPlayerSelectingMenus = true;
             SuccessSound = true;
-            SceneManager.LoadScene ("MenusWhenPlayerFails");
-		}
+            userdata.setEnd();
+            UserdataObject.instance.userdata = GameManager.instance.userdata;
+            SceneManager.LoadScene("MenusWhenPlayerFails");
+        }
 	}
 
     void DecreaseScore(int dec_score) //스코어 감점
@@ -147,20 +167,26 @@ public class GameManager : MonoBehaviour
         score = score - dec_score;
         Debug.Log("스코어 " + dec_score + "점 감점");
         //스코어 텍스트화면 갱신
-        GameObject.Find("ScoreBoard").SendMessage("RenewScore", score);
+        scoreBoard.SendMessage("RenewScore", score);
         playFailSound();
     }
 
     void EndAccelationArea() //가속구간 지나갔을 때 미션 완료 확인
     {
+        userdata.accelation.setEnd();
         if (passAccelationStage == false) //가속 안했으면 감점
         {
+            StartCoroutine(messageSend(message, "가속실패"));
+            userdata.accelation.setSuccess("Fail");
+            userdata.accelation.setScore("10");
             DecreaseScore(10);
             if (!carPositionInit.isPlayerDoingWholeStage)
             {
                 GameMenus.isPlayerSelectingMenus = true;
                 SuccessSound = false;
                 GameMenus.resultText = "불합격입니다.가속구간 연습이 종료되었습니다.";
+                userdata.setEnd();
+                UserdataObject.instance.userdata = GameManager.instance.userdata;
                 SceneManager.LoadScene("MenusWhenPlayerFails");
             }
         }
@@ -168,11 +194,14 @@ public class GameManager : MonoBehaviour
         {
             playSound();
             passAccelationStage = false;
+            userdata.accelation.setSuccess("Success");
             if (!carPositionInit.isPlayerDoingWholeStage)
             {
                 GameMenus.isPlayerSelectingMenus = true;
                 SuccessSound = true;
                 GameMenus.resultText = "합격입니다.가속구간 연습이 종료되었습니다.";
+                userdata.setEnd();
+                UserdataObject.instance.userdata = GameManager.instance.userdata;
                 SceneManager.LoadScene("MenusWhenPlayerFails");
             }
         }
@@ -181,29 +210,41 @@ public class GameManager : MonoBehaviour
 
     void UphillFail()
     {
+        StartCoroutine(messageSend(message, "뒤로 밀림"));
         DecreaseScore(10);
-        Debug.Log("뒤로 많이 밀렸습니다");
+        userdata.uphil.setScore("10");
+        Debug.Log("뒤로 많이 밀렸습니다" + userdata.uphil.getScore());
     }
 
     void ParkingSuccess()
     {
+        GameManager.instance.userdata.parking.setEnd();
         if (parkingManager.checking == true)
         {
             playSound();
             Debug.Log("주차성공 입니다");
+            userdata.parking.setSuccess("Success");
+            UserdataObject.instance.userdata = GameManager.instance.userdata;
             if (!carPositionInit.isPlayerDoingWholeStage)
             {
+                userdata.parking.setSuccess("Success");
                 SuccessSound = true;
                 GameMenus.resultText = "합격입니다.직각주차 연습이 종료되었습니다.";
                 GameMenus.isPlayerSelectingMenus = true;
+                userdata.setEnd();
+                UserdataObject.instance.userdata = GameManager.instance.userdata;
                 SceneManager.LoadScene("MenusWhenPlayerFails");
             }
         }
         else
         {
+            userdata.parking.setSuccess("Fail");
+            userdata.setDisqualification("직각주차 실패");
             GameMenus.isPlayerSelectingMenus = true;
             SuccessSound = false;
             GameMenus.resultText = "직각주차 실격입니다.";
+            userdata.setEnd();
+            UserdataObject.instance.userdata = GameManager.instance.userdata;
             SceneManager.LoadScene("MenusWhenPlayerFails");
             Debug.Log("주차구간 실격입니다");
         }
@@ -223,8 +264,10 @@ public class GameManager : MonoBehaviour
                 // 과속한다면?	
                 if (this.m_CarController.CurrentSpeed >= MAX_SPEED_LIMIT)
                 {
+                    StartCoroutine(messageSend(message, "과속 20km/h초과"));
                     print("20km/h를 넘어서 감점");
                     DecreaseScore(10);
+                    userdata.setScore("10");
                     overSpeedCheck = true;
                 }
             }
@@ -242,27 +285,50 @@ public class GameManager : MonoBehaviour
 
     void AccidentChecking()
     {
-        if (m_StopSirenButton.emergencyLightOn == false && accidentCheck == true)
+        if (emeremergencyLightCheck == false && accidentCheck == true)
+        {
+            StartCoroutine(messageSend(message, "비상등 안킴"));
+          
+            userdata.unexcepted.setSuccess("Fail");
+            if (!carPositionInit.isPlayerDoingWholeStage)
+            {
+                SuccessSound = false;
+                GameMenus.resultText = "불합격입니다.돌발구간 연습이 종료되었습니다.";
+                GameMenus.isPlayerSelectingMenus = true;
+                userdata.setEnd();
+                UserdataObject.instance.userdata = GameManager.instance.userdata;
+                SceneManager.LoadScene("MenusWhenPlayerFails");
+            }
+        }
+        else if (m_StopSirenButton.emergencyLightOn == false && accidentCheck == true)
         {
             playSound();
             Debug.Log("돌발구간 합격입니다");
+            userdata.unexcepted.setSuccess("Success");
             if (!carPositionInit.isPlayerDoingWholeStage)
             {
                 SuccessSound = true;
                 GameMenus.resultText = "합격입니다.돌발구간 연습이 종료되었습니다.";
                 GameMenus.isPlayerSelectingMenus = true;
+                userdata.setEnd();
+                UserdataObject.instance.userdata = GameManager.instance.userdata;
                 SceneManager.LoadScene("MenusWhenPlayerFails");
             }
         }
         else if (m_StopSirenButton.emergencyLightOn == true || accidentCheck == false)
         {
+            StartCoroutine(messageSend(message, "비상등On 감점"));
             DecreaseScore(10);
+            userdata.unexcepted.setSuccess("Fail");
+            userdata.unexcepted.setScore("10");
             Debug.Log("돌발구간 실패이유:비상등이 켜져있습니다.");
             if (!carPositionInit.isPlayerDoingWholeStage)
             {
                 SuccessSound = false;
                 GameMenus.resultText = "불합격입니다.돌발구간 연습이 종료되었습니다.";
                 GameMenus.isPlayerSelectingMenus = true;
+                userdata.setEnd();
+                UserdataObject.instance.userdata = GameManager.instance.userdata;
                 SceneManager.LoadScene("MenusWhenPlayerFails");
             }
         }
@@ -270,19 +336,29 @@ public class GameManager : MonoBehaviour
     }
     void AccidentFail()
     {
+        StartCoroutine(messageSend(message, "비상등 안킴"));
+        userdata.unexcepted.setScore("10");
         DecreaseScore(10);
         Debug.Log("돌발구간 불합격");
     }
-
+    void AccidentStartFail()
+    {
+        StartCoroutine(messageSend(message, "늦은 출발"));
+        userdata.unexcepted.setScore("10");
+        DecreaseScore(10);
+        Debug.Log("돌발구간 불합격");
+    }
     void SignalOverWait()
     {
+        StartCoroutine(messageSend(message, "출발시간 초과"));
+        userdata.signal.setScore("5");
         Debug.Log("출발좀 하세요");
         DecreaseScore(5);
     }
 
     void playSound()
     {
-        //리소스파일에잇는 Bing를 로드시켜서 sound에 저장.
+        //리소스파일에 있는 Bing를 로드시켜서 sound에 저장.
         source.PlayOneShot(sound);
     }
 
@@ -305,5 +381,19 @@ public class GameManager : MonoBehaviour
     void playParkingAnnounceSound2()
     {
         source.PlayOneShot(parkingAnnounce2);
+    }
+    void YellowLineText()
+    {
+        StartCoroutine(messageSend(message, "중앙선 침범"));
+    }
+    IEnumerator messageSend(Text text, String message)
+    {
+        text.text = message;
+        yield return new WaitForSeconds(3);
+        if (text != null)
+        {
+            text.text = "";
+        }
+        yield return null;
     }
 }

@@ -6,7 +6,7 @@ public class CheckWaitForSignalEnd : MonoBehaviour {
 	private void OnTriggerExit(Collider collider){
 		if (collider.gameObject.tag == "Player")
 		{
-			GameObject.Find("GameManager").SendMessage("PassCarRestart");
+			GameObject.FindWithTag("GameManager").SendMessage("PassCarRestart");
 		}
 	}
 }

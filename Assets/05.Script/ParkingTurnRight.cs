@@ -22,22 +22,4 @@ public class ParkingTurnRight : MonoBehaviour
             GameManager.instance.SendMessage ("playParkingAnnounceSound2");
 		}
     }
-    /*
-    void OnTriggerStay(Collider other)
-    {
-    	Times += Time.deltaTime;
-        if (other.tag == "Player")
-        {
-        	if (parkingManager.BackwardCheck == true)
-            {
-            	if (Times > 1.0f ) //&& 사이드브레이크)
-                {
-                	Debug.Log("우회전 후 나가세요");
-                    parkingManager.TrunRightCheck = true;
-                    Times = 0.0f;
-                }
-            }
-		}
-    }
-    */
 }

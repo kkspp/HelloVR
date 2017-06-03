@@ -3,14 +3,13 @@ using System.Collections;
 
 public class SignalSecCheck : MonoBehaviour {
     float Timer;
-    bool Insidecheck=false;
-    public GameManager gameManager;
+    bool Insidecheck;
 	
 	void Start () {
         Timer = 0;
-	}
-
-    // Update is called once per frame
+        Insidecheck = false;
+    }
+    
     void Update()
     {
         if (Insidecheck == true && GameManager.instance.isGreenLight == true)//초록불이면
@@ -19,7 +18,7 @@ public class SignalSecCheck : MonoBehaviour {
 
             if (Timer > 10)
             {
-                GameObject.Find("GameManager").SendMessage("SignalOverWait");
+                GameObject.FindWithTag("GameManager").SendMessage("SignalOverWait");
                 Timer = 0;
             }
         }
@@ -36,8 +35,6 @@ public class SignalSecCheck : MonoBehaviour {
         if (other.tag == "Player")
         {
             Insidecheck = false;
-            
-
         }
     }
 }

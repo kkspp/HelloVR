@@ -12,7 +12,7 @@ public class AccelationArea : MonoBehaviour
 
     void Start()
     {
-        m_CarController = GameObject.Find("Car").GetComponent<Car::CarController>();
+		m_CarController = GameObject.FindWithTag("Car").GetComponent<Car::CarController>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -20,7 +20,7 @@ public class AccelationArea : MonoBehaviour
         if (other.tag == "Player")
         {
             GameManager.instance.currentStage = 6;
-
+            
             if (GameManager.instance.currentStage != GameManager.instance.pastStage + 1
                 && GameManager.instance.choiceFullCourseStage == true)
             {
@@ -31,7 +31,8 @@ public class AccelationArea : MonoBehaviour
             {
                 GameManager.instance.pastStage = 6;
             }
-
+            GameManager.instance.userdata.accelation.setStart();
+            GameManager.instance.userdata.accelation.setSuccess("Fail");
             GameManager.instance.accelationSection = true;
             Debug.Log("가속구간 돌입");
         }

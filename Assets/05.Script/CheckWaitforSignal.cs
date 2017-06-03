@@ -27,7 +27,7 @@ public class CheckWaitforSignal : MonoBehaviour {
                 }
             }
 
-            GameObject.Find("GameManager").SendMessage("PassCar");
+            GameObject.FindWithTag("GameManager").SendMessage("PassCar");
         }
     }
 }

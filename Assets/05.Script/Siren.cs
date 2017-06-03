@@ -5,7 +5,6 @@ public class Siren : MonoBehaviour {
     Behaviour halo;
     public Material col;
 
-    // Use this for initialization
     void Start () {
         halo = (Behaviour)GetComponent("Halo");
       

@@ -4,20 +4,17 @@ using System.Collections;
 public class ChangeSignal : MonoBehaviour {
     
     public GameObject[] signal;
-    public Transform signalBox;
     public int temp_time = 0;
-
     RaycastHit hit;
-    bool waitSignal = false;
+    bool waitSignal;
     
-
-
     void Start () {
         //신호 초기화
         signal[0].GetComponent<Renderer>().material.color = Color.gray;
         signal[1].GetComponent<Renderer>().material.color = Color.gray;
         signal[2].GetComponent<Renderer>().material.color = Color.green;
         signal[3].GetComponent<Renderer>().material.color = Color.green;
+        waitSignal = false;
     }
 	
     void ChangeSignals()
@@ -57,20 +54,16 @@ public class ChangeSignal : MonoBehaviour {
         }
     }
 
-	void Update () {
-        //Ray를 시각적으로 표시하기 위해 사용
-        Debug.DrawRay(signalBox.position, -signalBox.right * 40.0f + Vector3.down*5.0f, Color.green);
-
-        if (Physics.Raycast(signalBox.position, -signalBox.right * 40.0f + Vector3.down * 5.0f, out hit, 40.0f))
+    
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            if(hit.collider.gameObject)
-            {
-                waitSignal = true;
-            }
+            waitSignal = true;
+            ChangeSignals();
         }
-        ChangeSignals();
-        
     }
+    
 
     IEnumerator delayTime()
     {

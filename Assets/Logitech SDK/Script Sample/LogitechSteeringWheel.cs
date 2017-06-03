@@ -45,11 +45,13 @@ public class LogitechSteeringWheel : MonoBehaviour {
     
     void OnGUI()
     {
-        //activeForces = GUI.TextArea(new Rect(10, 10, 180, 200), activeForces, 400);
-        //propertiesEdit = GUI.TextArea(new Rect(200, 10, 200, 200), propertiesEdit, 400);
-        //actualState = GUI.TextArea(new Rect(410, 10, 300, 200), actualState, 1000);
-        //buttonStatus = GUI.TextArea(new Rect(720, 10, 300, 200), buttonStatus, 1000);
+        /*
+        activeForces = GUI.TextArea(new Rect(10, 10, 180, 200), activeForces, 400);
+        propertiesEdit = GUI.TextArea(new Rect(200, 10, 200, 200), propertiesEdit, 400);
+        actualState = GUI.TextArea(new Rect(410, 10, 300, 200), actualState, 1000);
+        buttonStatus = GUI.TextArea(new Rect(720, 10, 300, 200), buttonStatus, 1000);
         GUI.Label(new Rect(10, 400, 800, 400), forcesLabel);
+        */
     }
     
 
@@ -81,16 +83,19 @@ public class LogitechSteeringWheel : MonoBehaviour {
             LogitechGSDK.DIJOYSTATE2ENGINES rec;
             rec = LogitechGSDK.LogiGetStateUnity(0);
             actualState += "x-axis position :" + rec.lX + "\n"; //ÇÚµé
-            actualState += "y-axis position :" + rec.lY + "\n";
-            actualState += "z-axis position :" + rec.lZ + "\n"; //¾Ç¼¿
+            actualState += "y-axis position :" + rec.lY + "\n"; //¾Ç¼¿
+            actualState += "z-axis position :" + rec.lZ + "\n"; 
             actualState += "x-axis rotation :" + rec.lRx + "\n";
             actualState += "y-axis rotation :" + rec.lRy + "\n";
             actualState += "z-axis rotation :" + rec.lRz + "\n"; //ºê·¹ÀÌÅ©
             actualState += "extra axes positions 1 :" + rec.rglSlider[0] + "\n";
             actualState += "extra axes positions 2 :" + rec.rglSlider[1] + "\n";
+            
 
             //ÇÚµé °¢µµ Usercontrol¿¡Àü¼Û
             logitech.SendMessage("getWheelAngle", rec.lX);
+            logitech.SendMessage("getAccel", rec.lY);
+            logitech.SendMessage("getBrake", rec.lRz);
 
             switch (rec.rgdwPOV[0])
             {
@@ -158,6 +163,7 @@ public class LogitechSteeringWheel : MonoBehaviour {
             // FORCES AND EFFECTS 
             activeForces = "Active forces and effects :\n";
 
+            /*
             //Spring Force -> S
             if (Input.GetKeyUp(KeyCode.S)){
                if (LogitechGSDK.LogiIsPlaying(0, LogitechGSDK.LOGI_FORCE_SPRING))
@@ -192,7 +198,7 @@ public class LogitechSteeringWheel : MonoBehaviour {
             {
                 if (LogitechGSDK.LogiIsPlaying(0, LogitechGSDK.LOGI_FORCE_DAMPER))
                 {
-                    LogitechGSDK.LogiStopDamperForce(0);
+                    LogitechGSDK.LogiStopDamperForce(3);
                     activeForceAndEffect[2] = "";
                 }
                 else
@@ -333,6 +339,7 @@ public class LogitechSteeringWheel : MonoBehaviour {
             {
                 activeForces += activeForceAndEffect[i];
             }
+            */
 
 		}
 		else if(!LogitechGSDK.LogiIsConnected(0))

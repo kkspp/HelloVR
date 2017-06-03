@@ -14,16 +14,19 @@ public class ParkingManager : MonoBehaviour {
         TrunRightCheck = false;//우회전으로 나가야할곳 진입.주차완료확인
         checking = false; //전체적인 성공인지아닌지체크.
     }
+
+    
 	void Update () {
         if (ParkingSection == true && BackwardCheck==true && TrunRightCheck==true)
         {
             checking = true;
         }
 	}
+    
 
     void sendGameManager()
     {
-        GameObject.Find("GameManager").SendMessage("ParkingSuccess");
+        GameObject.FindWithTag("GameManager").SendMessage("ParkingSuccess");
     }
     void ParkingReset()
     {

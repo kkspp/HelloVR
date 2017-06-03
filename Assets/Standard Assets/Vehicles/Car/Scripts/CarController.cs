@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
         [SerializeField] private WheelCollider[] m_WheelColliders = new WheelCollider[4];
         [SerializeField] private GameObject[] m_WheelMeshes = new GameObject[4];
-        [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
+        //[SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
         [SerializeField] private Vector3 m_CentreOfMassOffset;
         [SerializeField] private float m_MaximumSteerAngle;
         [Range(0, 1)] [SerializeField] private float m_SteerHelper; // 0 is raw physics , 1 the car will grip in the direction it is facing
@@ -69,7 +69,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
-			//print ("현재 속력 타입: " + m_SpeedType);
         }
 
 
@@ -127,23 +126,31 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
         
-        public void Move(float steering, float accel, float footbrake, float handbrake)
+        public void Move(float steering, float accel, float footbrake, float handbrake, int gearState)
         {
             //추가
-            accel = accel - footbrake;
-            //Debug.Log(steering);
-            
-            if( footbrake >0 && CurrentSpeed < 0.1)
+
+            //경사로 코스일 때 오르막때문에 뒤로밀리는 현상 처리하기위해
+            if (GameMenus.uphill && m_Rigidbody.velocity.x > 0 && footbrake > 0)
+            {
+                accel = footbrake;
+            }
+            //브레이크를 밟으면
+            else if (footbrake > 0 && CurrentSpeed < 0.18)
             {
                 accel = 0;
                 footbrake = 0;
             }
-            
-			//경사로 코스일 때 오르막때문에 뒤로밀리는 현상 처리하기위해
-            if(m_Rigidbody.velocity.x > 0 && footbrake >0 && !GameMenus.uphill)
+            else if (gearState == 1)
             {
-                accel = footbrake;
+                accel = accel - footbrake;
             }
+            else if (gearState == -1)
+            {
+                accel = accel + footbrake;
+            }
+            
+
 
             //추가 끝
 
@@ -299,24 +306,24 @@ namespace UnityStandardAssets.Vehicles.Car
                 // is the tire slipping above the given threshhold
                 if (Mathf.Abs(wheelHit.forwardSlip) >= m_SlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
                 {
-                    m_WheelEffects[i].EmitTyreSmoke();
+                    //m_WheelEffects[i].EmitTyreSmoke();
 
                     // avoiding all four tires screeching at the same time
                     // if they do it can lead to some strange audio artefacts
                     if (!AnySkidSoundPlaying())
                     {
-                        m_WheelEffects[i].PlayAudio();
+                        //m_WheelEffects[i].PlayAudio();
                     }
                     continue;
                 }
 
                 // if it wasnt slipping stop all the audio
-                if (m_WheelEffects[i].PlayingAudio)
-                {
-                    m_WheelEffects[i].StopAudio();
-                }
+                //if (m_WheelEffects[i].PlayingAudio)
+               // {
+                //    m_WheelEffects[i].StopAudio();
+                //}
                 // end the trail generation
-                m_WheelEffects[i].EndSkidTrail();
+                //m_WheelEffects[i].EndSkidTrail();
             }
         }
 
@@ -371,17 +378,18 @@ namespace UnityStandardAssets.Vehicles.Car
             }
         }
 
-
+        
         private bool AnySkidSoundPlaying()
         {
             for (int i = 0; i < 4; i++)
             {
-                if (m_WheelEffects[i].PlayingAudio)
-                {
-                    return true;
-                }
+                //if (m_WheelEffects[i].PlayingAudio)
+                //{
+                //    return true;
+                //}
             }
             return false;
         }
+        
     }
 }

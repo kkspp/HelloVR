@@ -4,26 +4,18 @@ using System.Collections;
 namespace UnityStandardAssets.Vehicles.Car
 {
     public class UphillFailCheck : MonoBehaviour {
-       public UphillCheckArea UphillZone;
-    // Use this for initialization
-        void Start() {
-            
-        }
-
-        // Update is called once per frame
-        void Update() {
-         
-        }
+        public UphillCheckArea UphillZone;
+    
         void OnTriggerEnter(Collider other)
-        {
-            if(other.tag == "Player")
+        { 
+            if (other.tag == "Player")
             {
-				if (GameManager.instance.isPlayerPassedUphill == true)
+                GameMenus.uphill = true;
+                if (GameManager.instance.isPlayerPassedUphill == true)
                 {
-                    GameObject.Find("GameManager").SendMessage("UphillFail");
+                GameObject.FindWithTag("GameManager").SendMessage("UphillFail");
                 }
             }
         }
     }
-
 }
